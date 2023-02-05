@@ -321,3 +321,45 @@
   width: 22px;
   height: 19px;
 }
+
+/* ----------------------- FOOTER ------------------------------ */
+
+.footer {
+  max-width: 880px;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 659px) {
+  .footer {
+    max-width: 282px;
+  }
+}
+
+.page__footer {
+  margin: 0 auto 60px auto;
+}
+
+@media screen and (max-width: 798px) {
+  .page__footer {
+    margin-bottom: 36px;
+  }
+}
+
+.footer__text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+}
+
+@media screen and (max-width: 798px) {
+  .footer__text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
