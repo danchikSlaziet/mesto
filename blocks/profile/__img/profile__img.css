@@ -1,0 +1,9 @@
+.profile__img {
+  margin-right: 30px;
+}
+
+@media screen and (max-width: 798px) {
+  .profile__img {
+    margin: 0 0 26px 0;
+  }
+}
