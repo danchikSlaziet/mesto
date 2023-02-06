@@ -135,11 +135,24 @@
 
 .profile__text {
   max-width: 294px;
+  word-wrap: break-word;
+}
+
+@media screen and (max-width: 930px) {
+  .profile__text {
+    max-width: 270px;
+  }
 }
 
 @media screen and (max-width: 798px) {
   .profile__text {
-    margin-left: 28px;
+    max-width: 350px
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__text {
+    max-width: 189px;
   }
 }
 
@@ -148,6 +161,9 @@
   font-size: 42px;
   line-height: 1.14;
   margin: 0 0 16px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1024px) {
@@ -169,6 +185,9 @@
   font-size: 18px;
   line-height: 22px;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 798px) {
@@ -192,6 +211,12 @@
   margin-left: auto;
   width: 150px;
   height: 50px;
+  transition: opacity .2s linear;
+}
+
+.profile__btn_type_add:hover {
+  cursor: pointer;
+  opacity: .6;
 }
 
 @media screen and (max-width: 1024px) {
@@ -217,8 +242,13 @@
   width: 24px;
   height: 24px;
   margin-top: 15px;
+  transition: opacity .2s linear;
 }
 
+.profile__btn_type_edit:hover {
+  cursor: pointer;
+  opacity: .6;
+}
 
 @media screen and (max-width: 798px) {
   .profile__btn_type_edit {
@@ -318,10 +348,28 @@
   overflow: hidden;
 }
 
-.card__like-icon {
+.card__btn-like {
+  background-color: transparent;
+  border: none;
+  padding: 0;
   width: 22px;
   height: 19px;
+  background-image: url(../images/card__like.svg);
+  background-size: 100%;
+  background-position: center center;
 }
+
+.card__btn-like:hover {
+  cursor: pointer;
+  opacity: .5;
+}
+
+.card__btn-like:active {
+  background-image: url(../images/Union.svg);
+  opacity: 1;
+}
+
+/* атрибут disabled чере js вставится в кнопку card__btn-like */
 
 /* ----------------------- FOOTER ------------------------------ */
 
@@ -365,6 +413,8 @@
   }
 }
 
+/* --------------------------------- POPUP ------------------------------- */
+
 .popup {
   position: fixed;
   top: 0;
@@ -372,9 +422,13 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, .5);
-  display: flex;
+  display: none; 
   align-items: center;
   justify-content: center;
+}
+
+.popup_opened {
+  display: flex;
 }
 
 .popup__container {
@@ -456,6 +510,12 @@
   border: none;
   border-radius: 2px;
   padding: 14px 0;
+  transition: opacity .2s linear;
+}
+
+.form__button:hover {
+  cursor: pointer;
+  opacity: .8;
 }
 
 @media screen and (max-width: 484px) {
@@ -471,6 +531,12 @@
   top: -40px;
   width: 32px;
   height: 32px;
+  transition: opacity .2s linear;
+}
+
+.popup__close-icon:hover {
+  cursor: pointer;
+  opacity: .6;
 }
 
 @media screen and (max-width: 484px) {
