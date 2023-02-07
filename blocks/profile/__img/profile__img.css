@@ -1,5 +1,7 @@
 .profile__img {
   margin-right: 30px;
+  object-fit: cover;
+  object-position: center center;
 }
 
 @media screen and (max-width: 798px) {
