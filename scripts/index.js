@@ -1,10 +1,3 @@
-
-
-// хз как так выходит, ведь у меня popUp адаптивный и всегда с крестиком влезает даже
-// на разрешении 200-300px. может быть github pages чудил немного. В images приложил скрины
-// с popUp на мобильных разрешениях, в том числе на 399px как у вас. С медиа-запросами всё в порядке.
-// проверил в я.браузере, хроме, microsoft edge, даже в Internet Expllorer пашет (реально проверял :D)
-
 let mainContent = document.querySelector('.main');
 let popUp = document.querySelector('.popup');
 let buttonEdit = document.querySelector('.profile__btn_type_edit');
