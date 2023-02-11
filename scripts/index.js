@@ -1,4 +1,3 @@
-// скрипт для ПР4
 const popUpProfile = document.querySelector('.profile-popup');
 const buttonEdit = document.querySelector('.profile__btn_type_edit');
 const buttonsClose = document.querySelectorAll('.popup__close-btn');
@@ -8,7 +7,18 @@ const formElement = popUpProfile.querySelector('.form');
 const nameInput = formElement.querySelector('.form__input_type_name');
 const jobInput = formElement.querySelector('.form__input_type_job');
 const buttonSubmit = formElement.querySelector('.form__button');
+const popUpPhoto = document.querySelector('.photo-popup');
+const popUpPhotoText = popUpPhoto.querySelector('.popup__photo-text');
+const popUpPhotoImg = popUpPhoto.querySelector('.popup__photo-img');
+// popup добавления постов
+const popUpAdd = document.querySelector('.publication-popup');
+const buttonAdd = document.querySelector('.profile__btn_type_add');
+const formElementInAdd = popUpAdd.querySelector('.form');
+const placeInput = formElementInAdd.querySelector('.form__input_type_place');
+const urlInput = formElementInAdd.querySelector('.form__input_type_url');
 
+const cards = document.querySelector('.cards');
+const cardTemplate = document.querySelector('.cardTemplate').content;
 
 function openPopUp(popup) {
   popup.classList.add('popup_opened');
@@ -35,10 +45,7 @@ function handleFormSubmit (evt) {
   profileJob.textContent = jobInput.value;
   closePopUp(popUpProfile);
 }
-
 formElement.addEventListener('submit', handleFormSubmit); 
-
-// скрипт для ПР5
 
 const initialCards = [
   {
@@ -67,63 +74,49 @@ const initialCards = [
   }
 ];
 
-
- 
-const cards = document.querySelector('.cards');
-const cardTemplate = document.querySelector('.cardTemplate').content;
-// функция создания карточек
-function createCard() {
+function createCard(item) {
   const cardElement = cardTemplate.cloneNode('true');
+
   const like = cardElement.querySelector('.card__btn-like');
   like.addEventListener('click', () => like.classList.toggle('card__btn-like_active'));
+
   const buttonDelete = cardElement.querySelector('.card__delete');
   const realCard = cardElement.querySelector('.card');
   buttonDelete.addEventListener('click', () => realCard.remove());
-  const popUpPhoto = document.querySelector('.photo-popup');
-  const popUpPhotoText = popUpPhoto.querySelector('.popup__photo-text');
-  const popUpPhotoImg = popUpPhoto.querySelector('.popup__photo-img');
+
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
+
+  if (arguments.length ? 1 : 0) {
+      cardTitle.textContent = item.name;
+      cardImage.src = item.link;
+      cardImage.alt = `фото публикации: ${item.name}`
+  }
+
+  else {
+    cardImage.src = urlInput.value;
+    cardTitle.textContent = placeInput.value;
+    cardImage.alt = `фото публикации: ${placeInput.value}`;
+  }
   cardImage.addEventListener('click', () => {
     popUpPhotoImg.src = cardImage.src;
     popUpPhotoImg.alt = `фото публикации: ${cardTitle.textContent}`;
     popUpPhotoText.textContent = cardTitle.textContent;
     openPopUp(popUpPhoto);
   });
-
   return cardElement;
 }
 
-// добавление изначальных карточек
 initialCards.forEach(function(elem) {
-  const card = createCard();
-  const cardTitle = card.querySelector('.card__title');
-  const cardImage = card.querySelector('.card__image');
-  cardTitle.textContent = elem.name;
-  cardImage.src = elem.link;
-  cardImage.alt = `фото публикации: ${elem.name}`;
+  const card = createCard(elem);
   cards.append(card);
 });
 
-// popup добавления постов
-const popUpAdd = document.querySelector('.publication-popup');
-const buttonAdd = document.querySelector('.profile__btn_type_add');
-const formElementInAdd = popUpAdd.querySelector('.form');
-const placeInput = formElementInAdd.querySelector('.form__input_type_place');
-const urlInput = formElementInAdd.querySelector('.form__input_type_url');
-
 buttonAdd.addEventListener('click', () => openPopUp(popUpAdd));
-
-//добавление новых карточек
 
 function addNewCard (evt) {
   evt.preventDefault();
   const card = createCard();
-  const cardTitle = card.querySelector('.card__title');
-  const cardImage = card.querySelector('.card__image');
-  cardImage.src = urlInput.value;
-  cardTitle.textContent = placeInput.value;
-  cardImage.alt = `фото публикации: ${placeInput.value}`;
   cards.prepend(card);
   closePopUp(popUpAdd);
   evt.target.reset();
