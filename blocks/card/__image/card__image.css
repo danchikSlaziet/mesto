@@ -5,4 +5,11 @@
   object-position: center center;
   border-radius: 10px 10px 0px 0px;
   display: block;
+  filter: brightness(70%);
+  transition: filter .2s linear;
+}
+
+.card__image:hover {
+  filter: brightness(50%);
+  cursor: pointer;
 }

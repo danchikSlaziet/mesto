@@ -31,67 +31,21 @@
         <img src="./images/add-img.svg" alt="кнопка добавления публикации" class="profile__add-img">
       </button>
     </section>
-    <section class="cards page__cards">
-      <div class="card">
-        <img src="./images/kung-fu.jpg" alt="фото публикации: Карачаевск" class="card__image">
-        <div class="card__sub-info">
-          <h2 class="card__title">
-            Карачаевск
-          </h2>
-          <button class="card__btn-like" type="button">        
-          </button>
+    <section class="cards page__cards" aria-label="секция с карточками-постами">
+      <template class="cardTemplate">
+        <div class="card">
+          <img src="ссылка для валидности" alt="" class="card__image">
+          <div class="card__sub-info">
+            <h2 class="card__title">
+              
+            </h2>
+            <button class="card__btn-like" type="button">
+            </button>
+            <button class="card__delete" type="button">       
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <img src="./images/elbrus.jpg" alt="фото публикации: Карачаевск" class="card__image">
-        <div class="card__sub-info">
-          <h2 class="card__title">
-            Гора Эльбрус
-          </h2>
-          <button class="card__btn-like" type="button">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/dombai.jpg" alt="фото публикации: Карачаевск" class="card__image">
-        <div class="card__sub-info">
-          <h2 class="card__title">
-            Домбай
-          </h2>
-          <button class="card__btn-like" type="button">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/elbrus.jpg" alt="фото публикации: Карачаевск" class="card__image">
-        <div class="card__sub-info">
-          <h2 class="card__title">
-            Гора Эльбрус
-          </h2>
-          <button class="card__btn-like" type="button">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/dombai.jpg" alt="фото публикации: Карачаевск" class="card__image">
-        <div class="card__sub-info">
-          <h2 class="card__title">
-            Домбай
-          </h2>
-          <button class="card__btn-like" type="button">
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="./images/karachaevsk.jpg" alt="фото публикации: Карачаевск" class="card__image">
-        <div class="card__sub-info">
-          <h2 class="card__title">
-            Карачаево-Черкессия
-          </h2>
-          <button class="card__btn-like" type="button">
-          </button>
-        </div>
-      </div>
+      </template>
     </section>
   </main>
   <footer class="footer page__footer">
@@ -104,7 +58,7 @@
       <button type="button" class="popup__close-btn">
         <img src="./images/Close-Icon.svg" alt="иконка закрытия формы" class="popup__close-icon">
       </button >
-      <form action="#" class="form" name="infoForm">
+      <form action="#" class="form" name="info-Form">
         <h3 class="form__title">
           Редактировать профиль
         </h3>
@@ -114,6 +68,33 @@
           Сохранить
         </button>
       </form>
+    </div>
+  </div>
+  <div class="popup popup_add">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn">
+        <img src="./images/Close-Icon.svg" alt="иконка закрытия формы" class="popup__close-icon">
+      </button>
+      <form action="#" class="form" name="card-info-Form">
+        <h3 class="form__title">
+          Новое место
+        </h3>
+        <input type="text" class="form__input form__input_type_place" name="name" placeholder="Название">
+        <input type="text" class="form__input form__input_type_url" name="job" placeholder="Ссылка на картинку">
+        <button class="form__button" type="submit">
+          Создать
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_photo">
+    <div class="popup__photo-container">
+      <button type="button" class="popup__close-btn">
+        <img src="./images/Close-Icon.svg" alt="иконка закрытия формы" class="popup__close-icon">
+      </button>
+      <img src="./" alt="альт для валидности" class="popup__photo-img">
+      <p class="popup__photo-text">
+      </p>
     </div>
   </div>
   <script src="./scripts/index.js"></script>
