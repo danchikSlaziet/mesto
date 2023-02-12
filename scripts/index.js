@@ -87,17 +87,9 @@ function createCard(item) {
   const cardImage = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
 
-  if (arguments.length ? 1 : 0) {
-      cardTitle.textContent = item.name;
-      cardImage.src = item.link;
-      cardImage.alt = `фото публикации: ${item.name}`
-  }
-
-  else {
-    cardImage.src = urlInput.value;
-    cardTitle.textContent = placeInput.value;
-    cardImage.alt = `фото публикации: ${placeInput.value}`;
-  }
+  cardTitle.textContent = item.name; 
+  cardImage.src = item.link; 
+  cardImage.alt = `фото публикации: ${item.name}` 
   cardImage.addEventListener('click', () => {
     popUpPhotoImg.src = cardImage.src;
     popUpPhotoImg.alt = `фото публикации: ${cardTitle.textContent}`;
@@ -116,7 +108,11 @@ buttonAdd.addEventListener('click', () => openPopUp(popUpAdd));
 
 function addNewCard (evt) {
   evt.preventDefault();
-  const card = createCard();
+  const cardData = {
+    name: placeInput.value,
+    link: urlInput.value
+  }
+  const card = createCard(cardData);
   cards.prepend(card);
   closePopUp(popUpAdd);
   evt.target.reset();
