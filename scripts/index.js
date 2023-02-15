@@ -27,28 +27,36 @@ function resetDisabledinAdd() {   //функция нужна для того, �
 }
 
 // закрытие попапа нажатием на клавишу escape 
-function closeOnEsc(popup) {
-  window.addEventListener('keydown', (evt) => {
-    if(evt.key === 'Escape') {
-      closePopUp(popup);
-      window.removeEventListener('keydown', (evt));
-    }
-  });
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopUp(openedPopup);
+  }
 }
 
 function openPopUp(popup) {
   popup.classList.add('popup_opened');
-  closeOnEsc(popup);
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopUp(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
-buttonsClose.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopUp(popup));
-});
+const popups = document.querySelectorAll('.popup')
+// при помощи всплывания можно было наверное и лайки гораздо проще прописать 
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopUp(popup)
+        }
+        if (evt.target.classList.contains('popup__close-icon')) {
+          closePopUp(popup)
+        }
+    })
+})
+
 
 buttonEdit.addEventListener('click', () => {
   nameInput.value = profileName.innerText;
@@ -136,15 +144,3 @@ function addNewCard (evt) {
   resetDisabledinAdd();
 }
 formElementInAdd.addEventListener('submit', addNewCard);
-
-//   6 СПРИНТ 
-
-// закрытие попапа кликом на оверлей
-const popUpList = document.querySelectorAll('.popup');
-popUpList.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if(evt.target.classList.contains('popup')) {
-      closePopUp(popup);
-    } 
-  });
-});
