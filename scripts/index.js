@@ -20,8 +20,25 @@ const urlInput = formElementInAdd.querySelector('.form__input_type_url');
 const cards = document.querySelector('.cards');
 const cardTemplate = document.querySelector('.cardTemplate').content;
 
+const btnSubmitAdd = popUpAdd.querySelector('.form__button');
+function resetDisabledinAdd() {   //функция нужна для того, чтобы после валидного ввода в попапе добавления фото при последующем открытии попапа, кнопка была disabled
+  btnSubmitAdd.setAttribute('disabled', true);
+  btnSubmitAdd.classList.add('form__button_disabled');
+}
+
+// закрытие попапа нажатием на клавишу escape 
+function closeOnEsc(popup) {
+  window.addEventListener('keydown', (evt) => {
+    if(evt.key === 'Escape') {
+      closePopUp(popup);
+      window.removeEventListener('keydown', (evt));
+    }
+  });
+}
+
 function openPopUp(popup) {
   popup.classList.add('popup_opened');
+  closeOnEsc(popup);
 }
 
 function closePopUp(popup) {
@@ -116,5 +133,18 @@ function addNewCard (evt) {
   cards.prepend(card);
   closePopUp(popUpAdd);
   evt.target.reset();
+  resetDisabledinAdd();
 }
 formElementInAdd.addEventListener('submit', addNewCard);
+
+//   6 СПРИНТ 
+
+// закрытие попапа кликом на оверлей
+const popUpList = document.querySelectorAll('.popup');
+popUpList.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains('popup')) {
+      closePopUp(popup);
+    } 
+  });
+});

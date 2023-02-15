@@ -57,13 +57,15 @@
     <div class="popup__container">
       <button type="button" class="popup__close-btn">
         <img src="./images/Close-Icon.svg" alt="иконка закрытия формы" class="popup__close-icon">
-      </button >
-      <form action="#" class="form" name="info-Form">
+      </button>
+      <form action="#" class="form" name="info-Form" novalidate>
         <h3 class="form__title">
           Редактировать профиль
         </h3>
-        <input type="text" class="form__input form__input_type_name" name="name">
-        <input type="text" class="form__input form__input_type_job" name="job">
+        <input required minlength="2" maxlength="40" id="name-input" type="text" class="form__input form__input_type_name" name="name">
+        <span class="form__input-error name-input-error"></span>
+        <input required minlength="2" maxlength="200" id="job-input" type="text" class="form__input form__input_type_job" name="job">
+        <span class="form__input-error job-input-error"></span>
         <button class="form__button" type="submit">
           Сохранить
         </button>
@@ -75,12 +77,14 @@
       <button type="button" class="popup__close-btn">
         <img src="./images/Close-Icon.svg" alt="иконка закрытия формы" class="popup__close-icon">
       </button>
-      <form action="#" class="form" name="card-info-Form">
+      <form action="#" class="form" name="card-info-Form" novalidate>
         <h3 class="form__title">
           Новое место
         </h3>
-        <input type="text" class="form__input form__input_type_place" name="name" placeholder="Название">
-        <input type="text" class="form__input form__input_type_url" name="job" placeholder="Ссылка на картинку">
+        <input required minlength="2" maxlength="30" id="place-input" type="text" class="form__input form__input_type_place" name="place" placeholder="Название">
+        <span class="form__input-error place-input-error"></span>
+        <input required id="url-input" type="url" class="form__input form__input_type_url" name="url" placeholder="Ссылка на картинку">
+        <span class="form__input-error url-input-error"></span>
         <button class="form__button" type="submit">
           Создать
         </button>
@@ -98,5 +102,6 @@
     </div>
   </div>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

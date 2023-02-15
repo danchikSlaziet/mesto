@@ -10,7 +10,7 @@
   transition: opacity .2s linear;
 }
 
-.form__button:hover {
+.form__button:not([disabled]):hover {
   cursor: pointer;
   opacity: .8;
 }

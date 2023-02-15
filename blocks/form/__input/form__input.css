@@ -4,19 +4,9 @@
   line-height: 17px;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   padding: 0 0 10px 0;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
 .form__input:focus {
   outline: none;
-}
-
-.form__input:last-of-type {
-  margin-bottom: 48px;
-}
-
-@media screen and (max-width: 484px) {
-  .form__input:last-of-type {
-    margin-bottom: 45px;
-  }
 }
