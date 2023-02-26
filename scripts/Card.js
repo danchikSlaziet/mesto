@@ -1,10 +1,9 @@
-import { openPopUp, popUpPhoto, popUpPhotoImg, popUpPhotoText } from './index.js';
-
 class Card {
-  constructor(text, image, templateSelector) {
+  constructor(text, image, templateSelector, handleCardClick) {
     this._text = text;
     this._image = image;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -29,25 +28,23 @@ class Card {
     this._element.querySelector('.card__delete').addEventListener('click', this._deleteCard);
   }
 
-  _tunePopup() {
-    popUpPhotoImg.src = this._image;
-    popUpPhotoImg.alt = `фото публикации: ${this._text}`;
-    popUpPhotoText.textContent = this._text;
-    openPopUp(popUpPhoto);
+  _setPopupListeners() {
+    this._cardImage.addEventListener('click', () => this._handleCardClick(this._text, this._image));
   }
 
-  _setPopupListeners() {
-    this._element.querySelector('.card__image').addEventListener('click', () => this._tunePopup());
+  _setEventListeners() {
+    this._setLikeListeners();
+    this._setDeleteListeners();
+    this._setPopupListeners();
   }
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.card__image').src = this._image;
-    this._element.querySelector('.card__image').alt = `фото публикации: ${this._text}`;
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardImage.src = this._image;
+    this._cardImage.alt = `фото публикации: ${this._text}`;
     this._element.querySelector('.card__title').textContent = this._text;
-    this._setLikeListeners();
-    this._setDeleteListeners();
-    this._setPopupListeners();
+    this._setEventListeners();
     return this._element;
   }
 }

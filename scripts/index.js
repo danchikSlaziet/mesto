@@ -5,12 +5,12 @@ const popUpProfile = document.querySelector('.profile-popup');
 const buttonEdit = document.querySelector('.profile__btn_type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const formElement = popUpProfile.querySelector('.form');
-const nameInput = formElement.querySelector('.form__input_type_name');
-const jobInput = formElement.querySelector('.form__input_type_job');
-export const popUpPhoto = document.querySelector('.photo-popup');
-export const popUpPhotoText = popUpPhoto.querySelector('.popup__photo-text');
-export const popUpPhotoImg = popUpPhoto.querySelector('.popup__photo-img');
+const profileForm = popUpProfile.querySelector('.form');
+const nameInput = profileForm.querySelector('.form__input_type_name');
+const jobInput = profileForm.querySelector('.form__input_type_job');
+const popUpPhoto = document.querySelector('.photo-popup');
+const popUpPhotoText = popUpPhoto.querySelector('.popup__photo-text');
+const popUpPhotoImg = popUpPhoto.querySelector('.popup__photo-img');
 // popup добавления постов
 const popUpAdd = document.querySelector('.publication-popup');
 const buttonAdd = document.querySelector('.profile__btn_type_add');
@@ -20,11 +20,11 @@ const urlInput = formElementInAdd.querySelector('.form__input_type_url');
 
 const cards = document.querySelector('.cards');
 
-const btnSubmitAdd = popUpAdd.querySelector('.form__button');
-function resetDisabledinAdd() {   //функция нужна для того, чтобы после валидного ввода в попапе добавления фото при последующем открытии попапа, кнопка была disabled
-  btnSubmitAdd.setAttribute('disabled', true);
-  btnSubmitAdd.classList.add('form__button_disabled');
-}
+// const btnSubmitAdd = popUpAdd.querySelector('.form__button');
+// function resetDisabledinAdd() {   //функция нужна для того, чтобы после валидного ввода в попапе добавления фото при последующем открытии попапа, кнопка была disabled
+//   btnSubmitAdd.setAttribute('disabled', true);
+//   btnSubmitAdd.classList.add('form__button_disabled');
+// }
 
 // закрытие попапа нажатием на клавишу escape 
 function closeByEscape(evt) {
@@ -34,7 +34,7 @@ function closeByEscape(evt) {
   }
 }
 
-export function openPopUp(popup) {
+function openPopUp(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
 }
@@ -57,20 +57,19 @@ popups.forEach((popup) => {
   })
 })
 
-
 buttonEdit.addEventListener('click', () => {
   nameInput.value = profileName.innerText;
   jobInput.value = profileJob.innerText;
   openPopUp(popUpProfile);
 });
 
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopUp(popUpProfile);
 }
-formElement.addEventListener('submit', handleFormSubmit);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 const initialCards = [
   {
@@ -100,8 +99,16 @@ const initialCards = [
 ];
 
 function createCard(name, link, templateSelector) {
-  return new Card(name, link, templateSelector).generateCard();
+  return new Card(name, link, templateSelector, handleCardClick).generateCard();
 }
+
+function handleCardClick(name, link) {
+  popUpPhotoImg.src = link;
+  popUpPhotoImg.alt = `фото публикации: ${name}`;
+  popUpPhotoText.textContent = name;
+  openPopUp(popUpPhoto);
+}
+
 
 initialCards.forEach(function (elem) {
   const card = createCard(elem.name, elem.link, 'cardTemplate');
@@ -118,17 +125,11 @@ function addNewCard(evt) {
   }
   const card = createCard(cardData.name, cardData.link, 'cardTemplate');
   cards.prepend(card);
+  newCardValidation.resetDisabledinAdd();
   closePopUp(popUpAdd);
   evt.target.reset();
-  resetDisabledinAdd();
 }
 formElementInAdd.addEventListener('submit', addNewCard);
-
-const btnSumbitProfile = popUpProfile.querySelector('.form__button'); /* эта функция нужна для активной кнопки сабмита в попапе профиля при первоначальном открытии этого попапа(иначе она неактивна) */
-function resetDisabledinProfile() {
-  btnSumbitProfile.removeAttribute('disabled', true);
-  btnSumbitProfile.classList.remove('form__button_disabled');
-};
 
 const selectorsObj = {
   formSelector: '.form',
@@ -143,5 +144,3 @@ const newCardValidation = new FormValidator(selectorsObj, document.forms['card-i
 const profileValidation = new FormValidator(selectorsObj, document.forms['info-Form']);
 newCardValidation.enableValidation();
 profileValidation.enableValidation();
-
-resetDisabledinProfile();

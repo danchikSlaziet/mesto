@@ -16,18 +16,19 @@ class FormValidator {
 
   _showInputError = (inputElement, errorMessage) => {
     inputElement.classList.add(this._inputErrorClass);
-    this._formElement.querySelector(`.${inputElement.id}-error`).textContent = errorMessage;
-    this._formElement.querySelector(`.${inputElement.id}-error`).classList.add(this._errorClass);
+    this._inputError.textContent = errorMessage;
+    this._inputError.classList.add(this._errorClass);
   }
 
   _hideInputError = (inputElement) => {
     inputElement.classList.remove(this._inputErrorClass);
-    this._formElement.querySelector(`.${inputElement.id}-error`).classList.remove(this._inputErrorClass);
-    this._formElement.querySelector(`.${inputElement.id}-error`).classList.remove(this._errorClass);
-    this._formElement.querySelector(`.${inputElement.id}-error`).textContent = '';
+    this._inputError.classList.remove(this._inputErrorClass);
+    this._inputError.classList.remove(this._errorClass);
+    this._inputError.textContent = '';
   }
 
   _checkInputValidity = (inputElement) => {
+    this._inputError = this._formElement.querySelector(`.${inputElement.id}-error`);
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
@@ -60,6 +61,12 @@ class FormValidator {
         this._toggleButtonState();
       })
     });
+  }
+
+  resetDisabledinAdd() {
+    //функция нужна для того, чтобы после валидного ввода в попапе добавления фото при последующем открытии попапа, кнопка была disabled
+    this._buttonElement.setAttribute('disabled', true);
+    this._buttonElement.classList.add('form__button_disabled');
   }
 
   enableValidation() {
