@@ -5,7 +5,8 @@ const popUpProfile = document.querySelector('.profile-popup');
 const buttonEdit = document.querySelector('.profile__btn_type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const profileForm = popUpProfile.querySelector('.form');
+const profileForm = document.forms['info-Form'];
+const photoForm = document.forms['card-info-Form'];
 const nameInput = profileForm.querySelector('.form__input_type_name');
 const jobInput = profileForm.querySelector('.form__input_type_job');
 const popUpPhoto = document.querySelector('.photo-popup');
@@ -125,7 +126,7 @@ function addNewCard(evt) {
   }
   const card = createCard(cardData.name, cardData.link, 'cardTemplate');
   cards.prepend(card);
-  newCardValidation.resetDisabledinAdd();
+  newCardValidation.disableButton();
   closePopUp(popUpAdd);
   evt.target.reset();
 }
@@ -140,7 +141,7 @@ const selectorsObj = {
   errorClass: 'form__input-error_visible'
 }
 
-const newCardValidation = new FormValidator(selectorsObj, document.forms['card-info-Form']);
-const profileValidation = new FormValidator(selectorsObj, document.forms['info-Form']);
+const newCardValidation = new FormValidator(selectorsObj, photoForm);
+const profileValidation = new FormValidator(selectorsObj, profileForm);
 newCardValidation.enableValidation();
 profileValidation.enableValidation();

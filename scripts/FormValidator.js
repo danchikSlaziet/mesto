@@ -44,8 +44,7 @@ class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute('disabled', true);
+      this.disableButton();
     }
     else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
@@ -63,10 +62,10 @@ class FormValidator {
     });
   }
 
-  resetDisabledinAdd() {
+  disableButton() {
     //функция нужна для того, чтобы после валидного ввода в попапе добавления фото при последующем открытии попапа, кнопка была disabled
     this._buttonElement.setAttribute('disabled', true);
-    this._buttonElement.classList.add('form__button_disabled');
+    this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 
   enableValidation() {
