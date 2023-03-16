@@ -8,15 +8,12 @@ import UserInfo from '../components/UserInfo.js';
 
 import {buttonEdit, buttonAdd, profileForm, photoForm, initialCards, selectorsObj} from '../utils/constants.js';
 
-function createCard(name, link, templateSelector) {
-  return new Card(name, link, templateSelector, () => { imagePopup.open({ imageLink: link, imageText: name }) }).generateCard();
+function createCard(name, link) {
+  return new Card(name, link, 'cardTemplate', () => { imagePopup.open({ imageLink: link, imageText: name }) }).generateCard();
 }
 
 const cardList = new Section({ items: initialCards, renderer: createCard }, 'cards');
-cardList.setItem();
-cardList.renderedCards.forEach((elem) => {
-  cardList.addItem(elem);
-});
+cardList.renderItems();
 
 const imagePopup = new PopupWithImage('photo-popup');
 imagePopup.setEventListeners();
@@ -24,8 +21,7 @@ imagePopup.setEventListeners();
 const userInfo = new UserInfo({ nameSelector: 'profile__name', jobSelector: 'profile__job' });
 const formPublicPopup = new PopupWithForm('publication-popup', (valuesObject) => {
   const { 'url-input': link, 'place-input': name } = valuesObject;
-  newCardValidation.disableButton();
-  cardList.addItem(createCard(name, link, 'cardTemplate'));
+  cardList.addItem(createCard(name, link));
 });
 formPublicPopup.setEventListeners();
 
@@ -42,6 +38,7 @@ buttonEdit.addEventListener('click', () => {
 });
 
 buttonAdd.addEventListener('click', () => {
+  newCardValidation.disableButton();
   formPublicPopup.open();
 });
 

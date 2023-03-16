@@ -3,12 +3,14 @@ export default class Section {
     this._items = items;
     this._renderer = renderer;
     this._container = document.querySelector(`.${containerSelector}`);
+    this._renderedCards = [];
   }
-
-  setItem() {
-    this.renderedCards = this._items.map((item) => {
-      return this._renderer(item.name, item.link, 'cardTemplate');
+  
+  renderItems() {
+    this._renderedCards = this._items.map((item) => {
+      return this._renderer(item.name, item.link);
     });
+    this._renderedCards.forEach((elem) => {this.addItem(elem)});
   }
   addItem(elem) {
      this._container.prepend(elem);
