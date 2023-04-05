@@ -1,33 +1,16 @@
+// кнопки профиля
 export const buttonEdit = document.querySelector('.profile__btn_type_edit');
 export const buttonAdd = document.querySelector('.profile__btn_type_add');
+export const buttonChangeAvatar = document.querySelector('.avatar-btn');
+// формы
 export const profileForm = document.forms['info-Form'];
 export const photoForm = document.forms['card-info-Form'];
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+export const avatarForm = document.forms['avatar-Form'];
+// кнопки сабмита в формах
+export const buttonConfirmUpdateAvatar = avatarForm.querySelector('.form__button');
+export const buttonConfirmUpdateProfile = profileForm.querySelector('.form__button');
+export const buttonConfirmAddCard = photoForm.querySelector('.form__button');
+// селекторы формы
 export const selectorsObj = {
   formSelector: '.form',
   inputSelector: '.form__input',

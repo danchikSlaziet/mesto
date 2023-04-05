@@ -8,11 +8,11 @@ export default class Section {
   
   renderItems() {
     this._renderedCards = this._items.map((item) => {
-      return this._renderer(item.name, item.link);
+      return this._renderer(item.name, item.link, item.owner._id, item._id, item.likes);
     });
     this._renderedCards.forEach((elem) => {this.addItem(elem)});
   }
   addItem(elem) {
-     this._container.prepend(elem);
+     this._container.append(elem);
   }
 };

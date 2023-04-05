@@ -12,14 +12,16 @@
   </header>
   <main class="main">
     <section class="profile page__profile">
-      <img src="<%=require('./images/kung-fu.jpg')%>" alt="аватарка профиля" class="profile__img avatar">
+      <button class="avatar-btn" type="button">
+        <img src="" alt="аватарка профиля" class="profile__img avatar">
+      </button >
       <div class="profile__info">
         <div class="profile__text">
           <h1 class="profile__name">
-            Жак-Ив Кусто
+            
           </h1>
           <p class="profile__job">
-            Исследователь океана
+            
           </p>
         </div>
         <button class="profile__btn profile__btn_type_edit" type="button">
@@ -38,8 +40,11 @@
             <h2 class="card__title">
               
             </h2>
-            <button class="card__btn-like" type="button">
-            </button>
+            <div class="cards__likes-wrapper">
+              <button class="card__btn-like" type="button">
+              </button>
+              <p class="card__like-counter"></p>
+            </div >
             <button class="card__delete" type="button">       
             </button>
           </div>
@@ -98,6 +103,38 @@
       <img src="./" alt="альт для валидности" class="popup__photo-img">
       <p class="popup__photo-text">
       </p>
+    </div>
+  </div>
+  <div class="popup delete-popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn">
+        <img src="<%=require('./images/Close-Icon.svg')%>" alt="иконка закрытия формы" class="popup__close-icon">
+      </button>
+      <form action="#" class="form" name="card-delete-Form" novalidate>
+        <h3 class="form__title delete-popup__title">
+          Вы уверены?
+        </h3>
+        <button class="form__button button__confirm" type="submit">
+          Да
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="popup avatar-popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn">
+        <img src="<%=require('./images/Close-Icon.svg')%>" alt="иконка закрытия формы" class="popup__close-icon">
+      </button>
+      <form action="#" class="form" name="avatar-Form" novalidate>
+        <h3 class="form__title">
+          Обновить аватар
+        </h3>
+        <input required id="avatar-url-input" type="url" class="form__input form__input_type_url" name="avatar-url" placeholder="Ссылка на картинку">
+        <span class="form__input-error avatar-url-input-error"></span>
+        <button class="form__button" type="submit">
+          Сохранить
+        </button>
+      </form>
     </div>
   </div>
 </body>
