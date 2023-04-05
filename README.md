@@ -12,4 +12,4 @@
 
 **Ссылка на GithubPages**
 
-https://danchikslaziet.github.io/mesto/
+https://danchikslaziet.github.io/mesto
