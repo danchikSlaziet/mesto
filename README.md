@@ -11,5 +11,3 @@
 В будущем планируется подтянуть бэк.
 
 **Ссылка на GithubPages**
-
-https://danchikslaziet.github.io/mesto/
