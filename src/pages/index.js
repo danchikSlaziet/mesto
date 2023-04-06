@@ -20,10 +20,6 @@ function createCard(name, link, ownerId, cardId, likesArray) {
                   () => {return userId}).generateCard();
 }
 
-function addItem(elem) {
-  document.querySelector('.cards').prepend(elem);
-} 
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63/',
   headers: {
