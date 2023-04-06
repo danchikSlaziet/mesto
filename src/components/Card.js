@@ -1,10 +1,12 @@
 export default class Card {
-  constructor(text, image, ownerId, cardId, likesArray, templateSelector, handleCardClick, handlerDelete, handlerLike) {
+  constructor(text, image, ownerId, cardId, likesArray, templateSelector, handleCardClick, handlerDelete, handlerLike, getUserId) {
     this._text = text;
     this._image = image;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._ownerId = ownerId;
+    this._getUserId = getUserId;
+    this._userId = this._getUserId();
     this._cardId = cardId;
     this._likesArray = likesArray;
     this._handlerDelete = handlerDelete;
@@ -22,7 +24,7 @@ export default class Card {
   _checkLiked() {
     let myLike = false;
     this._likesArray.forEach((elem) => {
-      if (elem._id === 'b3e53b729175e9af99c2d405') {
+      if (elem._id === this._userId) {
         myLike = true;
       }
     });
@@ -41,17 +43,17 @@ export default class Card {
   _setLikeListeners() {
     this._element.querySelector('.card__btn-like').addEventListener('click', (evt) => {
       if (!evt.target.classList.contains('card__btn-like_active')) {
-        this._toggleLike(evt);
         this._handlerLike(this._cardId, true)
           .then((data) => {
+            this._toggleLike(evt);
             this._likesCounter.textContent = data.likes.length;
           })
           .catch(err => console.log(err));
       }
       else {
-        this._toggleLike(evt);
         this._handlerLike(this._cardId, false)
           .then((data) => {
+            this._toggleLike(evt);
             this._likesCounter.textContent = data.likes.length;
           })
           .catch(err => console.log(err));
@@ -79,7 +81,7 @@ export default class Card {
     this._likesCounter = this._element.querySelector('.card__like-counter');
     this._buttonDelete = this._element.querySelector('.card__delete');
      // My id is b3e53b729175e9af99c2d405
-     if(this._ownerId !== 'b3e53b729175e9af99c2d405') {
+     if(this._ownerId !== this._userId) {
       this._buttonDelete.style.display = 'none';
     }
     this._cardImage = this._element.querySelector('.card__image');

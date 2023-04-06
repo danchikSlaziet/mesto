@@ -11,13 +11,19 @@ export default class PopupWithDelete extends Popup {
     this._buttonConfirm.removeEventListener("click", this.deleteCard);
   }
   deleteCard = () => {
+    this._buttonConfirm.textContent = 'Удаление...';
+    this._buttonConfirm.disabled = true;
     this._apiDeleteCard()
       .then(() => {
         this._cardEl.remove();
         this._cardEl = null;
         this.close();
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(() => {
+        this._buttonConfirm.textContent = 'Да';
+        this._buttonConfirm.disabled = false;
+      });
   }
   open = ({apiDeleteCard, cardEl}) => {
     this._cardEl = cardEl;
@@ -29,7 +35,6 @@ export default class PopupWithDelete extends Popup {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this.close();
     })
   }
 }
