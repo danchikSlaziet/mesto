@@ -42,7 +42,7 @@ Promise.all([api.getInfoAboutMe(), api.getInitialCards()])
       buttonConfirmAddCard.textContent = 'Сохранение...';
       api.addCard(name, link)
         .then((data) => {
-          addItem(createCard(name, link, data.owner._id, data._id, data.likes));
+          cardList.prependItem(createCard(name, link, data.owner._id, data._id, data.likes));
           formPublicPopup.close();
         })
         .catch((err) => console.log(err))
